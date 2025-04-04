@@ -1,6 +1,7 @@
 package co.edu.uniquindio.banco.modelo.entidades;
 
 import co.edu.uniquindio.banco.config.Constantes;
+import co.edu.uniquindio.banco.modelo.enums.TipoTransaccion;
 import co.edu.uniquindio.banco.modelo.vo.PorcentajeGastosIngresos;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class BilleteraVirtual {
     }
 
     public void retirar(float monto, Transaccion transaccion) throws Exception{
+        transaccion.setTipoTransaccion(TipoTransaccion.RETIRO);
 
         float montoConComision = monto + Constantes.COMISION;
 
@@ -43,6 +45,7 @@ public class BilleteraVirtual {
             throw new Exception("El monto a retirar debe ser mayor a cero");
         }
 
+        transaccion.setTipoTransaccion(TipoTransaccion.DEPOSITO);
         saldo += monto;
         transacciones.add(transaccion);
     }
