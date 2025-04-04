@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.MonthDay;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -79,6 +80,47 @@ public class Banco {
         // Se registra la billetera del usuario
         registrarBilletera(usuario);
     }
+
+    public void actualizarContacto(String idActualizar, String id, String nombre, String direccion, String email, String password) throws Exception {
+        if(id == null || id.isEmpty()){
+            throw new Exception("El id es obligatorio");
+        }
+
+        if(nombre == null || nombre.isEmpty()){
+            throw new Exception("El nombre es obligatorio");
+        }
+
+        if(direccion == null || direccion.isEmpty()){
+            throw new Exception("La dirección es obligatoria");
+        }
+
+        if(email == null || email.isEmpty()){
+            throw new Exception("El email es obligatorio");
+        }
+
+        if(password == null || password.isEmpty()){
+            throw new Exception("La contraseña es obligatoria");
+        }
+
+        if(buscarUsuario(id) != null){
+            throw new Exception("El usuario ya existe");
+        }
+
+        Usuario usuarioActualizar = buscarUsuario(idActualizar);
+
+        for (Usuario usuario : usuarios) {
+            if (usuario.getId().equals(id) && usuario != usuarioActualizar) {
+                throw new Exception("El id ya existe en la lista de usuarios");
+            }
+        }
+
+        usuarioActualizar.setNombre(nombre);
+        usuarioActualizar.setId(id);
+        usuarioActualizar.setEmail(email);
+        usuarioActualizar.setDireccion(direccion);
+        usuarioActualizar.setPassword(password);
+    }
+
 
     /**
      * Permite registrar una billetera para un usuario

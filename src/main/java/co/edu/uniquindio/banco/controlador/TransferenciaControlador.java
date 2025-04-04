@@ -1,5 +1,6 @@
 package co.edu.uniquindio.banco.controlador;
 
+import co.edu.uniquindio.banco.BancoApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,7 +26,7 @@ public class TransferenciaControlador {
 
     @FXML
     void regresar(ActionEvent event) {
-
+        BancoApp.navegarVentana("/panelCliente.fxml", "Panel", event, getClass());
     }
 
     @FXML

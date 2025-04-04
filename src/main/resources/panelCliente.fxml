@@ -42,7 +42,7 @@
          <children>
             <Button fx:id="btnCerrarSesion" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Cerrar Sesión" />
             <Button fx:id="btnConsultar" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#consultarSaldo" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Consultar" />
-            <Button fx:id="btnTransferir" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#realizarTransferencia" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Transferir" />
+            <Button fx:id="btnTransferir" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#irTransferencia" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Transferir" />
             <Button fx:id="btnActualizarUsuario" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#actualizarUsuario" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Actualizar Usuario" />
          </children>
       </HBox>

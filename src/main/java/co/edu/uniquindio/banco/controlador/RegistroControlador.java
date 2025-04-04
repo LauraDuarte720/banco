@@ -47,7 +47,7 @@ public class RegistroControlador {
                     txtPassword.getText() );
 
             // Se muestra un mensaje de éxito y se cierra la ventana
-            BancoApp.crearAlerta("El usuario " + txtNombre + " ha sido registrado correctamente", Alert.AlertType.INFORMATION);
+            BancoApp.crearAlerta("El usuario " + txtNombre.getText() + " ha sido registrado correctamente", Alert.AlertType.INFORMATION);
             BancoApp.navegarVentana("/inicio.fxml", "Inicio", actionEvent, getClass());
 
         }catch (Exception e){
