@@ -27,4 +27,9 @@ public class ActualizarControlador {
 
     }
 
+    @FXML
+    void regresar(ActionEvent event) {
+
+    }
+
 }

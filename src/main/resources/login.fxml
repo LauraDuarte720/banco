@@ -7,12 +7,22 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="400.0" spacing="30.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.banco.controlador.LoginControlador">
    <children>
+      <HBox prefHeight="42.0" prefWidth="400.0">
+         <children>
+            <Button fx:id="btnRegresar" minHeight="28.0" minWidth="76.0" mnemonicParsing="false" onAction="#regresar" prefHeight="28.0" prefWidth="76.0" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Regresar">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
       <Label alignment="CENTER" text="Iniciar Sesión">
          <font>
             <Font size="23.0" />
@@ -59,6 +69,6 @@
       <Button fx:id="btnIniciarSesion" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Iniciar Sesión" />
    </children>
    <padding>
-      <Insets top="90.0" />
+      <Insets top="20.0" />
    </padding>
 </VBox>

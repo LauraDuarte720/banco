@@ -21,12 +21,21 @@ import java.util.UUID;
 @Setter
 public class Banco {
 
+    private static Banco banco;
+
     private List<Usuario> usuarios;
     private List<BilleteraVirtual> billeteras;
 
-    public Banco(){
+    private Banco(){
         this.usuarios = new ArrayList<>();
         this.billeteras = new ArrayList<>();
+    }
+
+    public static Banco getBanco(){
+        if(banco == null){
+            banco = new Banco();
+        }
+        return banco;
     }
 
     /**
@@ -241,5 +250,18 @@ public class Banco {
             throw new Exception("La billetera no existe");
         }
         return billetera.obtenerPorcentajeGastosIngresos(mes, anio);
+    }
+
+    public Usuario iniciarSesion(String numeroIdentificacion, String contrasena) throws Exception{
+        Usuario usuarioEncontrado = null;
+        for(Usuario usuario : usuarios){
+            if(usuario.getId().equals(numeroIdentificacion) && usuario.getPassword().equals(contrasena)){
+                usuarioEncontrado = usuario;
+            }
+        }
+        if(usuarioEncontrado == null){
+            throw new Exception("Usuario o contraseña incorrecta");
+        }
+        return usuarioEncontrado;
     }
 }

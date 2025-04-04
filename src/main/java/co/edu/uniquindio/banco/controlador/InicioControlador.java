@@ -1,5 +1,6 @@
 package co.edu.uniquindio.banco.controlador;
 
+import co.edu.uniquindio.banco.BancoApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +18,7 @@ public class InicioControlador {
      * @param actionEvent Evento que representa el clic del botón
      */
     public void irIniciarSesion(ActionEvent actionEvent) {
-        navegarVentana("/login.fxml", "Banco - Iniciar Sesión");
+        BancoApp.navegarVentana("/login.fxml", "Banco - Iniciar Sesión", actionEvent, getClass());
     }
 
     /**
@@ -25,7 +26,7 @@ public class InicioControlador {
      * @param actionEvent Evento que representa el clic del botón
      */
     public void irRegistroCliente(ActionEvent actionEvent) {
-        navegarVentana("/registro.fxml", "Banco - Registro de Cliente");
+        BancoApp.navegarVentana("/registro.fxml", "Banco - Registro de Cliente", actionEvent, getClass());
     }
 
     /**
@@ -33,27 +34,6 @@ public class InicioControlador {
      * @param nombreArchivoFxml Nombre del archivo FXML
      * @param tituloVentana Título de la ventana
      */
-    public void navegarVentana(String nombreArchivoFxml, String tituloVentana) {
-        try {
 
-            // Cargar la vista
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(nombreArchivoFxml));
-            Parent root = loader.load();
-
-            // Crear la escena
-            Scene scene = new Scene(root);
-
-            // Crear un nuevo escenario (ventana)
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.setTitle(tituloVentana);
-
-            // Mostrar la nueva ventana
-            stage.show();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 }
+

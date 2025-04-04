@@ -1,11 +1,17 @@
 package co.edu.uniquindio.banco.controlador;
 
+import co.edu.uniquindio.banco.modelo.entidades.Transaccion;
+import co.edu.uniquindio.banco.modelo.entidades.Usuario;
+import co.edu.uniquindio.banco.modelo.enums.TipoTransaccion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import java.time.LocalDateTime;
+
 
 public class PanelClienteControlador {
 
@@ -22,10 +28,10 @@ public class PanelClienteControlador {
     private Button btnTransferir;
 
     @FXML
-    private TableColumn<?, ?> colCategoria;
+    private TableColumn<Transaccion, TipoTransaccion> colCategoria;
 
     @FXML
-    private TableColumn<?, ?> colFecha;
+    private TableColumn<Transaccion, LocalDateTime> colFecha;
 
     @FXML
     private TableColumn<?, ?> colTipo;
@@ -43,7 +49,9 @@ public class PanelClienteControlador {
     private Label lblNroCuenta;
 
     @FXML
-    private TableView<?> tblTransacciones;
+    private TableView<Transaccion> tblTransacciones;
+
+    Usuario usuario;
 
     @FXML
     void actualizarUsuario(ActionEvent event) {

@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 public class TransferenciaControlador {
 
     @FXML
+    private Button btnRegresar;
+
+    @FXML
     private Button btnTransferir;
 
     @FXML
@@ -19,6 +22,11 @@ public class TransferenciaControlador {
 
     @FXML
     private TextField txtNumeroCuenta;
+
+    @FXML
+    void regresar(ActionEvent event) {
+
+    }
 
     @FXML
     void transferir(ActionEvent event) {

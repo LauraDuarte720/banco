@@ -1,37 +1,34 @@
 package co.edu.uniquindio.banco.controlador;
 
+import co.edu.uniquindio.banco.BancoApp;
 import co.edu.uniquindio.banco.modelo.entidades.Banco;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-/**
- * Clase que representa el controlador de la ventana de registro de usuario
- * @author caflorezvi
- */
 public class RegistroControlador {
 
     @FXML
-    private TextField txtIdentificacion;
-    @FXML
-    private TextField txtNombre;
-    @FXML
     private TextField txtCorreo;
+
     @FXML
     private TextField txtDireccion;
+
+    @FXML
+    private TextField txtIdentificacion;
+
+    @FXML
+    private TextField txtNombre;
+
     @FXML
     private PasswordField txtPassword;
 
-    private final Banco banco;
+    Banco banco;
 
-    /**
-     * Constructor de la clase, inicializa el banco
-     */
-    public RegistroControlador(){
-        banco = new Banco();
+    public RegistroControlador() {
+        banco = Banco.getBanco();
     }
 
     /**
@@ -50,33 +47,22 @@ public class RegistroControlador {
                     txtPassword.getText() );
 
             // Se muestra un mensaje de éxito y se cierra la ventana
-            crearAlerta("Usuario registrado correctamente", Alert.AlertType.INFORMATION);
-            cerrarVentana();
+            BancoApp.crearAlerta("El usuario " + txtNombre + " ha sido registrado correctamente", Alert.AlertType.INFORMATION);
+            BancoApp.navegarVentana("/inicio.fxml", "Inicio", actionEvent, getClass());
 
         }catch (Exception e){
-            crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
+            BancoApp.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }
 
     }
 
-    /**
-     * Método que se encarga de mostrar una alerta en pantalla
-     * @param mensaje mensaje a mostrar
-     * @param tipo tipo de alerta
-     */
-    public void crearAlerta(String mensaje, Alert.AlertType tipo){
-        Alert alert = new Alert(tipo);
-        alert.setTitle("Alerta");
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
+
+
+
+    @FXML
+    void regresar(ActionEvent event) {
+        BancoApp.navegarVentana("/inicio.fxml", "Inicio", event, getClass());
+
     }
 
-    /**
-     * Método que se encarga de cerrar la ventana actual
-     */
-    public void cerrarVentana(){
-        Stage stage = (Stage) txtIdentificacion.getScene().getWindow();
-        stage.close();
-    }
 }
