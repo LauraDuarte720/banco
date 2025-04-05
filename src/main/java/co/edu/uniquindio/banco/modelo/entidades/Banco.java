@@ -2,6 +2,7 @@ package co.edu.uniquindio.banco.modelo.entidades;
 
 import co.edu.uniquindio.banco.config.Constantes;
 import co.edu.uniquindio.banco.modelo.enums.Categoria;
+import co.edu.uniquindio.banco.modelo.enums.TipoTransaccion;
 import co.edu.uniquindio.banco.modelo.vo.PorcentajeGastosIngresos;
 import co.edu.uniquindio.banco.modelo.vo.SaldoTransaccionesBilletera;
 import lombok.Getter;
@@ -255,6 +256,10 @@ public class Banco {
             throw new Exception("Saldo insuficiente");
         }
 
+        if(billeteraOrigen.equals(billeteraDestino)){
+            throw new Exception("No se pueden realizar transferencias a la misma billetera");
+        }
+
         Transaccion transaccion = new Transaccion(
                 UUID.randomUUID().toString(),
                 monto,
@@ -267,6 +272,7 @@ public class Banco {
 
         billeteraOrigen.retirar(monto, transaccion);
         billeteraDestino.depositar(monto, transaccion);
+
 
     }
 

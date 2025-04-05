@@ -74,7 +74,7 @@ public class PanelClienteControlador {
         colValor.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().obtenerMontoCadena()));
         colUsuario.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().obtenerUsuario2(billetera).getNombre()));
+                new SimpleStringProperty(cellData.getValue().obtenerUsuario(billetera).getNombre()));
         tblTransacciones.setItems(observableList(banco.obtenerTransacciones(billetera.getNumero())));
     }
 

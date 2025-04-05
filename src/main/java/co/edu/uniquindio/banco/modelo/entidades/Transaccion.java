@@ -24,33 +24,10 @@ public class Transaccion {
     private Categoria categoria;
     private BilleteraVirtual billeteraOrigen, billeteraDestino;
     private float comision;
-    private TipoTransaccion tipoTransaccion;
 
-    public Transaccion(String id, float monto, LocalDateTime fecha, Categoria categoria, BilleteraVirtual billeteraOrigen, BilleteraVirtual billeteraDestino, float comision) {
-        this.id = id;
-        this.monto = monto;
-        this.fecha = fecha;
-        this.categoria = categoria;
-        this.billeteraOrigen = billeteraOrigen;
-        this.billeteraDestino = billeteraDestino;
-        this.comision = comision;
-    }
 
     public String obtenerMontoCadena(){
         return String.valueOf(monto);
-    }
-
-    public Usuario obtenerUsuario() {
-        Usuario usuario = null;
-        switch (tipoTransaccion){
-            case RETIRO:
-                usuario = billeteraDestino.getUsuario();
-                break;
-            case DEPOSITO:
-                usuario = billeteraOrigen.getUsuario();
-                break;
-        }
-        return usuario;
     }
 
     public TipoTransaccion obtenerTipo(BilleteraVirtual billeteraOr){
@@ -60,7 +37,7 @@ public class Transaccion {
         return TipoTransaccion.DEPOSITO;
     }
 
-    public Usuario obtenerUsuario2(BilleteraVirtual billeteraOr){
+    public Usuario obtenerUsuario(BilleteraVirtual billeteraOr){
         if(billeteraOr.equals(billeteraOrigen)){
             return billeteraDestino.getUsuario();
         }

@@ -30,7 +30,6 @@ public class BilleteraVirtual {
     }
 
     public void retirar(float monto, Transaccion transaccion) throws Exception{
-        transaccion.setTipoTransaccion(TipoTransaccion.RETIRO);
 
         float montoConComision = monto + Constantes.COMISION;
 
@@ -50,7 +49,6 @@ public class BilleteraVirtual {
             throw new Exception("El monto a retirar debe ser mayor a cero");
         }
 
-        transaccion.setTipoTransaccion(TipoTransaccion.DEPOSITO);
         saldo += monto;
         transacciones.add(transaccion);
     }
