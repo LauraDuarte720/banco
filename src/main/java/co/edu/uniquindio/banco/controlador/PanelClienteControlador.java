@@ -86,7 +86,7 @@ public class PanelClienteControlador {
     @FXML
     void cerrarSesion(ActionEvent event) {
         sesion.cerrarSesion();
-        BancoApp.navegarVentana("/login.fxml", "Login", event, getClass());
+        BancoApp.navegarVentana("/inicio.fxml", "Login", event, getClass());
     }
 
     @FXML

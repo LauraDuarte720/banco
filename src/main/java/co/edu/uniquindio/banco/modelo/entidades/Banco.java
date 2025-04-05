@@ -103,9 +103,6 @@ public class Banco {
             throw new Exception("La contraseña es obligatoria");
         }
 
-        if(buscarUsuario(id) != null){
-            throw new Exception("El usuario ya existe");
-        }
 
         Usuario usuarioActualizar = buscarUsuario(idActualizar);
 

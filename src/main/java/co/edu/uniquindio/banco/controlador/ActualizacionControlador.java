@@ -10,7 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class ActualizarControlador {
+public class ActualizacionControlador {
 
     @FXML
     private TextField txtCorreo;
@@ -34,7 +34,7 @@ public class ActualizarControlador {
 
     @FXML
     public void initialize() {
-        Banco.getBanco();
+        banco = Banco.getBanco();
         sesion = Sesion.getInstancia();
         usuario = sesion.getUsuario();
         txtNombre.setText(usuario.getNombre());
@@ -58,8 +58,8 @@ public class ActualizarControlador {
                     txtPassword.getText() );
 
             // Se muestra un mensaje de éxito y se cierra la ventana
-            BancoApp.crearAlerta("El usuario " + txtNombre.getText() + " ha sido registrado correctamente", Alert.AlertType.INFORMATION);
-            BancoApp.navegarVentana("/inicio.fxml", "Inicio", actionEvent, getClass());
+            BancoApp.crearAlerta("El usuario " + txtNombre.getText() + " ha sido actualizado correctamente", Alert.AlertType.INFORMATION);
+            BancoApp.navegarVentana("/panelCliente.fxml", "Inicio", actionEvent, getClass());
 
         }catch (Exception e){
             BancoApp.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
