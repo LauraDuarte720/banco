@@ -60,5 +60,12 @@ public class Transaccion {
         return TipoTransaccion.DEPOSITO;
     }
 
+    public Usuario obtenerUsuario2(BilleteraVirtual billeteraOr){
+        if(billeteraOr.equals(billeteraOrigen)){
+            return billeteraDestino.getUsuario();
+        }
+        return  billeteraOrigen.getUsuario();
+    }
+
 
 }
