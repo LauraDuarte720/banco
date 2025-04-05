@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import static javafx.collections.FXCollections.observableList;
+
 
 public class PanelClienteControlador {
 
@@ -61,18 +63,19 @@ public class PanelClienteControlador {
         sesion = Sesion.getInstancia();
         usuario = sesion.getUsuario();
         billetera = banco.buscarBilleteraUsuario(usuario.getId());
-        lblBienvenidaBanco.setText(usuario.getNombre() + "bienvenido a su banco, aquí podrá ver sus transacciones");
+        lblBienvenidaBanco.setText(usuario.getNombre() + " bienvenido a su banco, aquí podrá ver sus transacciones");
         lblNroCuenta.setText("Nro. Cuenta." + billetera.getNumero());
         colCategoria.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getCategoria().name()));
         colTipo.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getTipoTransaccion().name()));
+                new SimpleStringProperty(cellData.getValue().obtenerTipo(billetera).name()));
         colFecha.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getFecha().toString()));
         colValor.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().obtenerMontoCadena()));
         colUsuario.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().obtenerUsuario().getNombre()));
+        tblTransacciones.setItems(observableList(banco.obtenerTransacciones(billetera.getNumero())));
     }
 
     @FXML

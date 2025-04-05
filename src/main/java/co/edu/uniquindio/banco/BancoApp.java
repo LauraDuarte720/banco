@@ -1,5 +1,7 @@
 package co.edu.uniquindio.banco;
 
+import co.edu.uniquindio.banco.modelo.entidades.Banco;
+import co.edu.uniquindio.banco.modelo.entidades.BilleteraVirtual;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +20,7 @@ public class BancoApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
+        crearDatosPrueba();
         FXMLLoader loader = new FXMLLoader(BancoApp.class.getResource("/inicio.fxml"));
         Parent parent = loader.load();
 
@@ -57,5 +59,23 @@ public class BancoApp extends Application {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+    }
+
+    public void crearDatosPrueba(){
+        try{
+            Banco banco = Banco.getBanco();
+            banco.registrarUsuario("001", "Laura Martínez", "Calle 10 #20-30", "laura@email.com", "pass123");
+            BilleteraVirtual billeteraVirtual = banco.buscarBilleteraUsuario("001");
+            billeteraVirtual.setSaldo(10000);
+            banco.registrarUsuario("002", "Carlos Gómez", "Av. Central #45-67", "carlos@email.com", "secure456");
+            BilleteraVirtual billeteraVirtual2 = banco.buscarBilleteraUsuario("002");
+            billeteraVirtual2.setSaldo(5000);
+            System.out.println(billeteraVirtual.getNumero());
+            System.out.println(billeteraVirtual2.getNumero());
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

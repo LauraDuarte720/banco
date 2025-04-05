@@ -45,10 +45,19 @@ public class Transaccion {
         switch (tipoTransaccion){
             case RETIRO:
                 usuario = billeteraDestino.getUsuario();
+                break;
             case DEPOSITO:
                 usuario = billeteraOrigen.getUsuario();
+                break;
         }
         return usuario;
+    }
+
+    public TipoTransaccion obtenerTipo(BilleteraVirtual billeteraOr){
+        if(billeteraOr.equals(billeteraOrigen)){
+            return TipoTransaccion.RETIRO;
+        }
+        return TipoTransaccion.DEPOSITO;
     }
 
 

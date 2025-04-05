@@ -16,10 +16,10 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="740.0" spacing="270.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="740.0" spacing="200.0">
          <children>
-            <Label fx:id="lblBienvenidaBanco" text="bienvenido a su banco, aqui podra ver sus transacciones" />
-            <Label fx:id="lblNroCuenta" text="Nro. Cuenta.">
+            <Label fx:id="lblBienvenidaBanco" prefHeight="17.0" prefWidth="386.0" text="bienvenido a su banco, aqui podra ver sus transacciones" />
+            <Label fx:id="lblNroCuenta" prefHeight="17.0" prefWidth="264.0" text="Nro. Cuenta.">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
