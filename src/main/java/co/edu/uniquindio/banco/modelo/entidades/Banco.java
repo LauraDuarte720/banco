@@ -257,6 +257,11 @@ public class Banco {
             throw new Exception("No se pueden realizar transferencias a la misma billetera");
         }
 
+        if (monto <= 0){
+            throw new Exception("El monto a retirar debe ser mayor a cero");
+        }
+
+
         Transaccion transaccion = new Transaccion(
                 UUID.randomUUID().toString(),
                 monto,

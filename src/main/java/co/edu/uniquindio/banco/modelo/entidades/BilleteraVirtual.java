@@ -33,10 +33,6 @@ public class BilleteraVirtual {
 
         float montoConComision = monto + Constantes.COMISION;
 
-        if (montoConComision <= 0){
-            throw new Exception("El monto a retirar debe ser mayor a cero");
-        }
-
         transaccion.setComision(Constantes.COMISION);
 
         saldo -= montoConComision;
@@ -44,10 +40,6 @@ public class BilleteraVirtual {
     }
 
     public void depositar(float monto, Transaccion transaccion) throws Exception {
-
-        if (monto <= 0){
-            throw new Exception("El monto a retirar debe ser mayor a cero");
-        }
 
         saldo += monto;
         transacciones.add(transaccion);
