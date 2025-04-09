@@ -4,6 +4,7 @@ import co.edu.uniquindio.banco.BancoApp;
 import co.edu.uniquindio.banco.modelo.Sesion;
 import co.edu.uniquindio.banco.modelo.entidades.Banco;
 import co.edu.uniquindio.banco.modelo.entidades.Usuario;
+import co.edu.uniquindio.banco.utilidades.Utilidades;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -27,14 +28,13 @@ public class ActualizacionControlador {
     @FXML
     private PasswordField txtPassword;
 
-    Banco banco;
+    private final Banco banco = Banco.getInstancia();
     Usuario usuario;
     Sesion sesion;
 
 
     @FXML
     public void initialize() {
-        banco = Banco.getBanco();
         sesion = Sesion.getInstancia();
         usuario = sesion.getUsuario();
         txtNombre.setText(usuario.getNombre());
@@ -58,18 +58,18 @@ public class ActualizacionControlador {
                     txtPassword.getText() );
 
             // Se muestra un mensaje de éxito y se cierra la ventana
-            BancoApp.crearAlerta("El usuario " + txtNombre.getText() + " ha sido actualizado correctamente", Alert.AlertType.INFORMATION);
-            BancoApp.navegarVentana("/panelCliente.fxml", "Inicio", actionEvent, getClass());
+            Utilidades.crearAlerta("El usuario " + txtNombre.getText() + " ha sido actualizado correctamente", Alert.AlertType.INFORMATION);
+            Utilidades.navegarVentana("/panelCliente.fxml", "Inicio", txtCorreo, getClass());
 
         }catch (Exception e){
-            BancoApp.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
+            Utilidades.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }
 
     }
 
     @FXML
     void regresar(ActionEvent event) {
-        BancoApp.navegarVentana("/panelCliente.fxml", "Panel", event, getClass());
+        Utilidades.navegarVentana("/panelCliente.fxml", "Panel",txtCorreo, getClass());
     }
 
 }

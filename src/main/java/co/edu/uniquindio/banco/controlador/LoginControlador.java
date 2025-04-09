@@ -4,6 +4,7 @@ import co.edu.uniquindio.banco.BancoApp;
 import co.edu.uniquindio.banco.modelo.Sesion;
 import co.edu.uniquindio.banco.modelo.entidades.Banco;
 import co.edu.uniquindio.banco.modelo.entidades.Usuario;
+import co.edu.uniquindio.banco.utilidades.Utilidades;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -27,11 +28,7 @@ public class LoginControlador {
     @FXML
     private TextField txtNumeroIdentificacion;
 
-    Banco banco;
-
-    public LoginControlador(){
-        banco = Banco.getBanco();
-    }
+    private final Banco banco = Banco.getInstancia();
 
     @FXML
     void iniciarSesion(ActionEvent event) {
@@ -39,11 +36,11 @@ public class LoginControlador {
             Usuario usuario = banco.iniciarSesion(txtNumeroIdentificacion.getText(), txtContrasena.getText());
             Sesion sesion = Sesion.getInstancia();
             sesion.setUsuario(usuario);
-            BancoApp.crearAlerta("Ha ingresado correctamente", Alert.AlertType.INFORMATION);
-            BancoApp.navegarVentana("/panelCliente.fxml", "PanelCliente", event, getClass());
+            Utilidades.crearAlerta("Ha ingresado correctamente", Alert.AlertType.INFORMATION);
+            Utilidades.navegarVentana("/panelCliente.fxml", "PanelCliente", btnIniciarSesion, getClass());
         }
         catch (Exception e){
-            BancoApp.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
+            Utilidades.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }
 
 
@@ -51,7 +48,7 @@ public class LoginControlador {
 
     @FXML
     void regresar(ActionEvent event) {
-        BancoApp.navegarVentana("/inicio.fxml", "Inicio", event, getClass());
+        Utilidades.navegarVentana("/inicio.fxml", "Inicio", btnRegresar, getClass());
 
     }
 

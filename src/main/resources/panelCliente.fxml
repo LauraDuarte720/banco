@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
@@ -40,10 +42,22 @@
       </TableView>
       <HBox prefHeight="54.0" prefWidth="740.0" spacing="20.0">
          <children>
-            <Button fx:id="btnCerrarSesion" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Cerrar Sesión" />
             <Button fx:id="btnConsultar" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#consultarSaldo" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Consultar" />
             <Button fx:id="btnTransferir" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#irTransferencia" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Transferir" />
-            <Button fx:id="btnActualizarUsuario" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#actualizarUsuario" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Actualizar Usuario" />
+            <MenuButton fx:id="mnBt" mnemonicParsing="false" prefHeight="38.0" prefWidth="111.0" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Sesion" >
+              <items>
+                <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="btnCerrarSesion" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Cerrar Sesión" />
+                     </graphic>
+                  </MenuItem>
+                <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Button fx:id="btnActualizarUsuario" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" onAction="#actualizarUsuario" style="-fx-background-color: #8c0000; -fx-text-fill: white" text="Actualizar Usuario" />
+                     </graphic>
+                  </MenuItem>
+              </items>
+            </MenuButton>
          </children>
       </HBox>
    </children>

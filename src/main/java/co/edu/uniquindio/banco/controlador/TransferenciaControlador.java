@@ -6,6 +6,7 @@ import co.edu.uniquindio.banco.modelo.entidades.Banco;
 import co.edu.uniquindio.banco.modelo.entidades.BilleteraVirtual;
 import co.edu.uniquindio.banco.modelo.entidades.Usuario;
 import co.edu.uniquindio.banco.modelo.enums.Categoria;
+import co.edu.uniquindio.banco.utilidades.Utilidades;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,18 +32,17 @@ public class TransferenciaControlador {
     @FXML
     private TextField txtNumeroCuenta;
 
-    Banco banco;
+    private final Banco banco = Banco.getInstancia();
     Usuario usuario;
     Sesion sesion;
 
     @FXML
     void regresar(ActionEvent event) {
-        BancoApp.navegarVentana("/panelCliente.fxml", "Panel", event, getClass());
+        Utilidades.navegarVentana("/panelCliente.fxml", "Panel", btnRegresar, getClass());
     }
 
     @FXML
     void initialize() {
-        banco = Banco.getBanco();
         sesion = Sesion.getInstancia();
         usuario = sesion.getUsuario();
         cmbCategoria.setItems(FXCollections.observableArrayList(Categoria.values()));
@@ -53,14 +53,14 @@ public class TransferenciaControlador {
         try {
             BilleteraVirtual billeteraVirtual= banco.buscarBilleteraUsuario(usuario.getId());
             banco.realizarTransferencia(billeteraVirtual.getNumero(),txtNumeroCuenta.getText(),Float.parseFloat(txtMontoTransferir.getText()),cmbCategoria.getValue() );
-            BancoApp.crearAlerta("Se ha realizado la transacción con éxito", Alert.AlertType.INFORMATION);
-            BancoApp.navegarVentana("/panelCliente.fxml", "Panel", event, getClass());
+            Utilidades.crearAlerta("Se ha realizado la transacción con éxito", Alert.AlertType.INFORMATION);
+            Utilidades.navegarVentana("/panelCliente.fxml", "Panel", btnTransferir, getClass());
 
         }catch (NumberFormatException e){
-            BancoApp.crearAlerta("Debe ingresar un número válido al monto", Alert.AlertType.ERROR);
+            Utilidades.crearAlerta("Debe ingresar un número válido al monto", Alert.AlertType.ERROR);
         }
         catch (Exception e){
-            BancoApp.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
+            Utilidades.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 

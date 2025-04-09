@@ -2,6 +2,7 @@ package co.edu.uniquindio.banco.controlador;
 
 import co.edu.uniquindio.banco.BancoApp;
 import co.edu.uniquindio.banco.modelo.entidades.Banco;
+import co.edu.uniquindio.banco.utilidades.Utilidades;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -25,11 +26,7 @@ public class RegistroControlador {
     @FXML
     private PasswordField txtPassword;
 
-    Banco banco;
-
-    public RegistroControlador() {
-        banco = Banco.getBanco();
-    }
+    private final Banco banco = Banco.getInstancia();
 
     /**
      * Método que se ejecuta al presionar el botón de registrarse
@@ -47,11 +44,11 @@ public class RegistroControlador {
                     txtPassword.getText() );
 
             // Se muestra un mensaje de éxito y se cierra la ventana
-            BancoApp.crearAlerta("El usuario " + txtNombre.getText() + " ha sido registrado correctamente", Alert.AlertType.INFORMATION);
-            BancoApp.navegarVentana("/inicio.fxml", "Inicio", actionEvent, getClass());
+            Utilidades.crearAlerta("El usuario " + txtNombre.getText() + " ha sido registrado correctamente", Alert.AlertType.INFORMATION);
+            Utilidades.navegarVentana("/inicio.fxml", "Inicio", txtCorreo, getClass());
 
         }catch (Exception e){
-            BancoApp.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
+            Utilidades.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }
 
     }
@@ -61,7 +58,7 @@ public class RegistroControlador {
 
     @FXML
     void regresar(ActionEvent event) {
-        BancoApp.navegarVentana("/inicio.fxml", "Inicio", event, getClass());
+        Utilidades.navegarVentana("/inicio.fxml", "Inicio", txtCorreo, getClass());
 
     }
 

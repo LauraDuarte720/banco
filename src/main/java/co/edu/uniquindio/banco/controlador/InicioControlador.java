@@ -1,10 +1,13 @@
 package co.edu.uniquindio.banco.controlador;
 
 import co.edu.uniquindio.banco.BancoApp;
+import co.edu.uniquindio.banco.utilidades.Utilidades;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
@@ -13,12 +16,15 @@ import javafx.stage.Stage;
  */
 public class InicioControlador {
 
+    @FXML
+    private Button btnIniciarSesion;
+
     /**
      * Método que permite ir a la vista de Iniciar Sesión
      * @param actionEvent Evento que representa el clic del botón
      */
     public void irIniciarSesion(ActionEvent actionEvent) {
-        BancoApp.navegarVentana("/login.fxml", "Banco - Iniciar Sesión", actionEvent, getClass());
+        Utilidades.navegarVentana("/login.fxml", "Banco - Iniciar Sesión", btnIniciarSesion, getClass());
     }
 
     /**
@@ -26,7 +32,7 @@ public class InicioControlador {
      * @param actionEvent Evento que representa el clic del botón
      */
     public void irRegistroCliente(ActionEvent actionEvent) {
-        BancoApp.navegarVentana("/registro.fxml", "Banco - Registro de Cliente", actionEvent, getClass());
+        Utilidades.navegarVentana("/registro.fxml", "Banco - Registro de Cliente", btnIniciarSesion, getClass());
     }
 
     /**

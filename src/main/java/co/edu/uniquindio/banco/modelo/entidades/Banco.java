@@ -23,7 +23,7 @@ import java.util.UUID;
 @Setter
 public class Banco {
 
-    private static Banco banco;
+    private static Banco INSTANCIA;
 
     private List<Usuario> usuarios;
     private List<BilleteraVirtual> billeteras;
@@ -33,11 +33,11 @@ public class Banco {
         this.billeteras = new ArrayList<>();
     }
 
-    public static Banco getBanco(){
-        if(banco == null){
-            banco = new Banco();
+    public static Banco getInstancia(){
+        if(INSTANCIA == null){
+            INSTANCIA = new Banco();
         }
-        return banco;
+        return INSTANCIA;
     }
 
     /**
@@ -313,5 +313,22 @@ public class Banco {
             throw new Exception("Usuario o contraseña incorrecta");
         }
         return usuarioEncontrado;
+    }
+
+    public void crearDatosPrueba(){
+        try{
+            registrarUsuario("001", "Laura Martínez", "Calle 10 #20-30", "laura@email.com", "pass123");
+            BilleteraVirtual billeteraVirtual = buscarBilleteraUsuario("001");
+            billeteraVirtual.setSaldo(10000);
+            registrarUsuario("002", "Carlos Gómez", "Av. Central #45-67", "carlos@email.com", "secure456");
+            BilleteraVirtual billeteraVirtual2 = buscarBilleteraUsuario("002");
+            billeteraVirtual2.setSaldo(5000);
+            System.out.println(billeteraVirtual.getNumero());
+            System.out.println(billeteraVirtual2.getNumero());
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

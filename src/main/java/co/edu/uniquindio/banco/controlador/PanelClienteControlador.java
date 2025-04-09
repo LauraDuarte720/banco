@@ -6,6 +6,7 @@ import co.edu.uniquindio.banco.modelo.entidades.Banco;
 import co.edu.uniquindio.banco.modelo.entidades.BilleteraVirtual;
 import co.edu.uniquindio.banco.modelo.entidades.Transaccion;
 import co.edu.uniquindio.banco.modelo.entidades.Usuario;
+import co.edu.uniquindio.banco.utilidades.Utilidades;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,11 +56,10 @@ public class PanelClienteControlador {
     BilleteraVirtual billetera;
     Sesion sesion;
     Usuario usuario;
-    Banco banco;
+    private final Banco banco = Banco.getInstancia();
 
     @FXML
     public void initialize() {
-        banco = Banco.getBanco();
         sesion = Sesion.getInstancia();
         usuario = sesion.getUsuario();
         billetera = banco.buscarBilleteraUsuario(usuario.getId());
@@ -80,24 +80,24 @@ public class PanelClienteControlador {
 
     @FXML
     void actualizarUsuario(ActionEvent event) {
-        BancoApp.navegarVentana("/actualizacion.fxml", "Actualizar", event, getClass());
+        Utilidades.navegarVentana("/actualizacion.fxml", "Actualizar", btnTransferir, getClass());
     }
 
     @FXML
     void cerrarSesion(ActionEvent event) {
         sesion.cerrarSesion();
-        BancoApp.navegarVentana("/inicio.fxml", "Login", event, getClass());
+        Utilidades.navegarVentana("/inicio.fxml", "Login", btnTransferir, getClass());
     }
 
     @FXML
     void consultarSaldo(ActionEvent event) {
         String mensaje = "El saldo de la billetera es: " + billetera.consultarSaldo();
-        BancoApp.crearAlerta(mensaje, Alert.AlertType.INFORMATION);
+        Utilidades.crearAlerta(mensaje, Alert.AlertType.INFORMATION);
     }
 
     @FXML
     void irTransferencia(ActionEvent event) {
-        BancoApp.navegarVentana("/transferencia.fxml", "Transferencia", event, getClass());
+        Utilidades.navegarVentana("/transferencia.fxml", "Transferencia", btnTransferir, getClass());
     }
 
 }
